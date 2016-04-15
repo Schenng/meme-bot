@@ -1,0 +1,27 @@
+{
+  "name": "memebot",
+  "version": "1.0.0",
+  "description": "A bot for memes",
+  "main": "index.js",
+  "scripts": {
+    "test": "helloworld"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Schenng/meme-bot.git"
+  },
+  "keywords": [
+    "meme",
+    "bot"
+  ],
+  "author": "Sim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Schenng/meme-bot/issues"
+  },
+  "homepage": "https://github.com/Schenng/meme-bot#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  }
+}
