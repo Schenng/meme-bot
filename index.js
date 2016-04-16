@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 
 // Index route
 app.get('/', function (req, res) {
-    res.send('Hello world, I am a chat bot')
+    res.send('Hello world, I am meme bot.')
 })
 
 // for Facebook verification
@@ -42,7 +42,7 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
 })
 
-var token = "hello_meme_bot"
+var token = "hello_meme_bot";
 
 function sendTextMessage(sender, text) {
     messageData = {
