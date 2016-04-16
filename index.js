@@ -29,6 +29,7 @@ app.listen(app.get('port'), function() {
     console.log('running on port', app.get('port'))
 })
 
+var token = "CAAPAYGiaAOIBAGme6IZAiiZBX8fvIpy1cZBLW2zDE31A64XDpCJoms7lMznueTU306ah4m9Mjo90MlIWjIt1ZBaGYrytZA7iBBMpqbni4LPOojYVye8B0tjuW0RsnfP9PJqrYsrKsUdN8oZAtSxZC1X4ZCeuxjRmd9WR76Tt8wvgLTrZB4ZB3gpqRQrff3jDDhgDMZD"
 
 app.post('/webhook/', function (req, res) {
     messaging_events = req.body.entry[0].messaging
@@ -52,7 +53,6 @@ app.post('/webhook/', function (req, res) {
     res.sendStatus(200)
 })
 
-var token = "CAAPAYGiaAOIBAGme6IZAiiZBX8fvIpy1cZBLW2zDE31A64XDpCJoms7lMznueTU306ah4m9Mjo90MlIWjIt1ZBaGYrytZA7iBBMpqbni4LPOojYVye8B0tjuW0RsnfP9PJqrYsrKsUdN8oZAtSxZC1X4ZCeuxjRmd9WR76Tt8wvgLTrZB4ZB3gpqRQrff3jDDhgDMZD"
 
 function sendTextMessage(sender, text) {
     messageData = {
