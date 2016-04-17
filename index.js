@@ -80,9 +80,18 @@ function sendTextMessage(sender, text) {
 
 function sendMeme(sender)
 {
+
     messageData = {
-        text: 'Dank meme'
+        "message":{
+            "attachment":{
+                "type":"image",
+                "payload":{
+                    "url":"https://petersapparel.com/img/shirt.png"
+                }
+            }
+        }
     }
+
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
