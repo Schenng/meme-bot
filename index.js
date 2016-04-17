@@ -82,12 +82,10 @@ function sendMeme(sender)
 {
 
     messageData = {
-        "message":{
-            "attachment":{
-                "type":"image",
-                "payload":{
-                    "url":"https://petersapparel.com/img/shirt.png"
-                }
+        "attachment":{
+            "type":"image",
+            "payload":{
+                "url":"https://petersapparel.com/img/shirt.png"
             }
         }
     }
