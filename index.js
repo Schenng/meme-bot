@@ -81,16 +81,14 @@ function sendTextMessage(sender, text) {
 
 function sendMeme(sender)
 {
-
     messageData = {
-        attachment:{
+        "attachment":{
             "type":"image",
             "payload":{
-                "url":"https://petersapparel.com/img/shirt.png"
+                "url":"http://www.geeksandcleats.com/wp-content/uploads/2015/06/nick-young-confused-face-300x256.png"
             }
         }
     }
-
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
