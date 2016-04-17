@@ -11,12 +11,26 @@ app.use(bodyParser.urlencoded({extended: false}))
 // Process application/json
 app.use(bodyParser.json())
 
+// Spin up the server
+app.listen(app.get('port'), function() {
+    console.log('running on port', app.get('port'))
+})
+
+//URL
+/* https://floating-falls-19686.herokuapp.com/ */
+/* Restart Heroku */
+//cd into directory
+//heroku restart
+
+//Access Page Token
+var token = "CAAPAYGiaAOIBAGme6IZAiiZBX8fvIpy1cZBLW2zDE31A64XDpCJoms7lMznueTU306ah4m9Mjo90MlIWjIt1ZBaGYrytZA7iBBMpqbni4LPOojYVye8B0tjuW0RsnfP9PJqrYsrKsUdN8oZAtSxZC1X4ZCeuxjRmd9WR76Tt8wvgLTrZB4ZB3gpqRQrff3jDDhgDMZD"
+
 // Index route
 app.get('/', function (req, res) {
     res.send('Hello world, I am a meme bot 2.0')
 })
 
-// for Facebook verification
+//Facebook verification
 app.get('/webhook/', function (req, res) {
     if (req.query['hub.verify_token'] === 'hello_meme_bot') {
         res.send(req.query['hub.challenge'])
@@ -24,13 +38,7 @@ app.get('/webhook/', function (req, res) {
     res.send('Error, wrong token')
 })
 
-// Spin up the server
-app.listen(app.get('port'), function() {
-    console.log('running on port', app.get('port'))
-})
-
-var token = "CAAPAYGiaAOIBAGme6IZAiiZBX8fvIpy1cZBLW2zDE31A64XDpCJoms7lMznueTU306ah4m9Mjo90MlIWjIt1ZBaGYrytZA7iBBMpqbni4LPOojYVye8B0tjuW0RsnfP9PJqrYsrKsUdN8oZAtSxZC1X4ZCeuxjRmd9WR76Tt8wvgLTrZB4ZB3gpqRQrff3jDDhgDMZD"
-
+//Responses
 app.post('/webhook/', function (req, res) {
     messaging_events = req.body.entry[0].messaging
     for (i = 0; i < messaging_events.length; i++) {
@@ -38,16 +46,11 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
         if (event.message && event.message.text) {
             text = event.message.text
-            if (text === 'Generic') {
-                sendGenericMessage(sender)
+            if (text === 'Meme') {
+                sendMeme(sender)
                 continue
             }
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
-        }
-        if (event.postback) {
-            text = JSON.stringify(event.postback)
-            sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token)
-            continue
         }
     }
     res.sendStatus(200)
@@ -75,37 +78,10 @@ function sendTextMessage(sender, text) {
     })
 }
 
-function sendGenericMessage(sender) {
+function sendMeme(sender)
+{
     messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "elements": [{
-                    "title": "First card",
-                    "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
-                    "buttons": [{
-                        "type": "web_url",
-                        "url": "https://www.messenger.com",
-                        "title": "web url"
-                    }, {
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for first element in a generic bubble",
-                    }],
-                }, {
-                    "title": "Second card",
-                    "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
-                    "buttons": [{
-                        "type": "postback",
-                        "title": "Postback",
-                        "payload": "Payload for second element in a generic bubble",
-                    }],
-                }]
-            }
-        }
+        text: 'Dank meme'
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -115,11 +91,13 @@ function sendGenericMessage(sender) {
             recipient: {id:sender},
             message: messageData,
         }
-    }, function(error, response, body) {
+    },function(error, response, body) {
         if (error) {
             console.log('Error sending messages: ', error)
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
         }
     })
+
 }
+
