@@ -70,6 +70,8 @@ function sendTextMessage(sender, text) {
             message: messageData,
         }
     }, function(error, response, body) {
+        console.log(response);
+        
         if (error) {
             console.log('Error sending messages: ', error)
         } else if (response.body.error) {
