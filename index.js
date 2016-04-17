@@ -61,6 +61,7 @@ function sendTextMessage(sender, text) {
     messageData = {
         text:text
     }
+    console.log('***SENDER***',sender);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
@@ -69,9 +70,7 @@ function sendTextMessage(sender, text) {
             recipient: {id:sender},
             message: messageData,
         }
-    }, function(error, response, body) {
-        console.log(response);
-        
+    }, function(error, response, body) {        
         if (error) {
             console.log('Error sending messages: ', error)
         } else if (response.body.error) {
