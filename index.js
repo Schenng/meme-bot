@@ -22,7 +22,7 @@ app.listen(app.get('port'), function() {
 //cd into directory
 //heroku restart
 
-//Access Page Token
+//Access Page Token - REference the Token file
 var token = "CAAPAYGiaAOIBAGme6IZAiiZBX8fvIpy1cZBLW2zDE31A64XDpCJoms7lMznueTU306ah4m9Mjo90MlIWjIt1ZBaGYrytZA7iBBMpqbni4LPOojYVye8B0tjuW0RsnfP9PJqrYsrKsUdN8oZAtSxZC1X4ZCeuxjRmd9WR76Tt8wvgLTrZB4ZB3gpqRQrff3jDDhgDMZD"
 
 // Index route
@@ -57,11 +57,11 @@ app.post('/webhook/', function (req, res) {
 })
 
 
+//Normal Text
 function sendTextMessage(sender, text) {
     messageData = {
         text:text
     }
-    console.log('***SENDER***',sender);
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
@@ -79,6 +79,7 @@ function sendTextMessage(sender, text) {
     })
 }
 
+//Swaggy P Meme
 function sendMeme(sender)
 {
     messageData = {
